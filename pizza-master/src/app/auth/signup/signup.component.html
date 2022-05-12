@@ -1,15 +1,21 @@
-<section>
- <form>
+<section class="container">
+ <form fxLayout="column" fxLayoutAlign="center center" #f ="ngForm" (ngSubmit) = "ngSubmit(f)">
   <mat-form-field>
-      <input type="email" matInput placeholder="Your Email">
-  </mat-form-field>
+      <input type="email" matInput placeholder="Your Email" ngtouched ngModel name="email" email required>
+      <mat-error>Email Invalid</mat-error>
+    </mat-form-field>
   <mat-form-field>
-    <input type="password" matInput placeholder="Your Password">
+    <input type="password" matInput placeholder="Your Password"
+     ngModel name="password" password minlength="6"
+      #pwInput ="ngModel">
+<mat-hint>Password  {{pwInput.value?.length}} / 6 characters</mat-hint>
 </mat-form-field>
+<mat-form-field>
+    <input matInput placeholder="BirthDate" [matDatepicker] ="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<button type="submit" mat-raised-button color="accent">Submit</button> 
  </form>
 </section>
-<section id="container">
-    <div id="child1" class="child" ></div>
-    <div id="child2" class="child"></div>
-    <div id="child3" class="child"></div>
-</section>
+    
